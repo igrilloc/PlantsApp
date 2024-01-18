@@ -1,0 +1,25 @@
+<template>
+    <div class="container slds-var-p-around_medium">
+        
+        <lightning-input
+            type="text"
+            label="Enter some text to filter the returned Species"
+            onchange={handleInputChange}>
+        </lightning-input>
+    
+        <div class="slds-grid slds-wrap slds-align_absolute-center">
+        
+            <template if:true={species.data}>
+                
+                <template for:each={species.data} for:item="specie">
+                    <div key={specie.Name}>
+                        <c-specie-tile specie={specie} class="slds-col slds-var-m-around_small"></c-specie-tile>
+                    </div>
+                </template>
+            </template>
+            
+            <template if:true={species.error}>Error retrieving species!</template>
+        </div>
+
+    </div>
+</template>
