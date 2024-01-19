@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Blooming__c</fullName>
     <externalId>false</externalId>
@@ -66,9 +66,9 @@
                 <label>NOV</label>
             </value>
             <value>
-                <fullName>DEV</fullName>
+                <fullName>DEC</fullName>
                 <default>false</default>
-                <label>DEV</label>
+                <label>DEC</label>
             </value>
         </valueSetDefinition>
     </valueSet>
