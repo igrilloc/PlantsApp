@@ -1,35 +1,44 @@
-<!-- sldsValidatorIgnore -->
 <template>
-    <template if:true={specie}>
-      
-        <!-- Template para Desktop -->
-        <template lwc:if={isLargeFormFactor}>
-            <lightning-card title={specie.Name} icon-name="custom:custom5">
-                <lightning-button label="View Details" slot="actions" onclick={handleViewDetails}></lightning-button>
-                <c-species-tile-body-content
-                    description={specie.Description__c}
-                    image-u-r-l={imageURLFromStaticResource}
-                    name={specie.Name}
-                    show-outdoors-icon={showOutdoorsIcon}
-                    show-indoors-icon={showIndoorsIcon}>
-                </c-species-tile-body-content>
-            </lightning-card>
-        </template>
-      
-        <!-- Template para Tablet o móvil -->
-        <template if:false={isLargeFormFactor}>
-            <a onclick={handleViewDetails}>
-                <lightning-card title={specie.Name} icon-name="custom:custom5">
-                    <c-species-tile-body-content
-                        description={specie.Description__c}
-                        image-u-r-l={imageURLFromStaticResource}
-                        name={specie.Name}
-                        show-outdoors-icon={showOutdoorsIcon}
-                        show-indoors-icon={showIndoorsIcon}>
-                    </c-species-tile-body-content>
-                </lightning-card>
-            </a>
-        </template>
+    <lightning-card  title={specie.Name} icon-name="custom:custom5">
+
+        <lightning-button 
+            label="View Details" 
+            slot="actions" 
+            onclick={navigateToRecordViewPage}>
+        </lightning-button>
+
+        <!-- body start -->
+        <p class="slds-var-p-horizontal_small description">{specie.Description__c}</p>
+
+        <div class="slds-align_absolute-center">
+            <img 
+                class="specie slds-var-m-around_medium"
+                src={specie.Image_URL__c}
+                alt={specie.Name}
+            />
+        </div>
+
+        <div class="slds-var-p-horizontal_small slds-align_absolute-center">
+            <template if:true={isOutdoor}>
+                <!-- Mostrar icono de sol -->
+                <lightning-icon 
+                    icon-name="custom:custom3"
+                    alternative-text="Outdoors"
+                    title="Outdoors"
+                ></lightning-icon>
+            </template>
     
-    </template>
+            <template if:true={isIndoor}>
+                <!-- Mostrar icono de casa -->
+                <lightning-icon 
+                    icon-name="standard:home"
+                    alternative-text="Indoors"
+                    title="Indoors"
+                    class="slds-var-m-left_small"
+                ></lightning-icon>
+            </template>
+        </div>
+        <!-- body end -->
+
+    </lightning-card>
 </template>

@@ -1,5 +1,7 @@
-.container {
-    background: darkseagreen;
-    border: 1px solid rgb(201, 201, 201);
-    border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+.grid {
+    width: 1100px;
+}
+
+lightning-input {
+    width: 1075px;
 }

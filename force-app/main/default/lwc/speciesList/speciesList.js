@@ -1,39 +1,46 @@
 import { LightningElement, wire } from "lwc";
-import { refreshApex } from "@salesforce/apex";
-import {registerRefreshHandler, unregisterRefreshHandler} from "lightning/refresh";
 import getFilteredSpecies from "@salesforce/apex/SpeciesService.getFilteredSpecies";
 
 
 export default class SpeciesList extends LightningElement {
-  
+
+    /* species = [
+        {
+            Name: "Jazmin",
+            Description__c: "Olorosa y bonita planta trepadora",
+            Image_URL__c: "https://i.pinimg.com/originals/88/a4/9f/88a49f73cb34bb49ea799087ad2fba15.jpg",
+            Location__c: "Indoors, Outdoors"
+        },
+        {
+            Name: "Hierbabuena",
+            Description__c: "Arómatica que huele de maravilla, muy usada en la gastronomía, en la medicina popular y para hacer te",
+            Image_URL__c: "https://decoracionyjardines.com/wp-content/uploads/2017/02/cuidados-de-la-hierbabuena.jpg",
+            Location__c: "Indoors, Outdoors"
+        },
+        {
+            Name: "Poto",
+            Description__c: "Bonita planta de interior que no requiere muchos cuidados y se expandirá casi sin mirarla!",
+            Image_URL__c: "https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2020/10/cuidados-de-las-plantas-telefono.jpg",
+            Location__c: "Indoors, Outdoors"
+        }
+    ]; */
+
+    // Properties, Getters and Setters
     searchText = "";
-    refreshHandlerID;
 
-    connectedCallback() {
-        this.refreshHandlerID = registerRefreshHandler(this, this.refreshHandler);
-    }
-  
-    disconnectedCallback() {
-        unregisterRefreshHandler(this.refreshHandlerID);
-    }
+    // Lifecycle Hooks
 
-    // Se ejecuta cuando se reciba el evento de refresh
-    refreshHandler() {
-        return new Promise((resolve) => {
-            // Traer nuevas species de Apex
-            refreshApex(this.species);
-            resolve(true);
-        });
-    }
-
+    // WIRE
     @wire(getFilteredSpecies, { searchText: "$searchText" })
     species;
 
+    // Methods
     handleInputChange(event) {
-        const searchText = event.target.value;
-    
-        if (searchText.length >= 3 || searchText === "") {
-            this.searchText = searchText;
+        const searchTextAux = event.detail.value;
+        // console.log("Texto recibido: ", searchTextAux);
+        if (searchTextAux.length >= 3 || searchTextAux === "") {
+            this.searchText = searchTextAux;
         }
     }
+
 }
