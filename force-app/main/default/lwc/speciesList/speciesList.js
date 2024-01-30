@@ -30,7 +30,8 @@ export default class SpeciesList extends LightningElement {
 
     // Lifecycle Hooks
 
-    // WIRE
+
+    // Wire
     @wire(getFilteredSpecies, { searchText: "$searchText" })
     species;
 
@@ -41,6 +42,6 @@ export default class SpeciesList extends LightningElement {
         if (searchTextAux.length >= 3 || searchTextAux === "") {
             this.searchText = searchTextAux;
         }
-    }
+    } 
 
 }

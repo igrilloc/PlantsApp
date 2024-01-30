@@ -5,11 +5,16 @@
 
 p.description {
     min-height: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 img.specie {
     height: 200px;
-    max-width: 250px;
+    width: 250px;
     border-radius: 1.5rem;
-    border: 1px solid rgb(221, 219, 218);
+    border: none;
+    object-fit: cover;
 }

@@ -26,4 +26,3 @@ public inherited sharing class FrequencyService {
         }
     }
 }
-  
