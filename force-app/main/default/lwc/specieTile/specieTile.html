@@ -1,44 +1,45 @@
 <template>
-    <lightning-card title={specie.Name} icon-name="custom:custom5">
+  <lightning-card title={specie.Name} icon-name="custom:custom5">
+    <lightning-button
+      label="View Details"
+      slot="actions"
+      onclick={navigateToRecordViewPage}
+    >
+    </lightning-button>
 
-        <lightning-button 
-            label="View Details" 
-            slot="actions" 
-            onclick={navigateToRecordViewPage}>
-        </lightning-button>
+    <!-- body start -->
+    <p class="slds-var-p-horizontal_small description">
+      {specie.Description__c}
+    </p>
 
-        <!-- body start -->
-        <p class="slds-var-p-horizontal_small description">{specie.Description__c}</p>
+    <div class="slds-align_absolute-center">
+      <img
+        class="specie slds-var-m-around_medium"
+        src={specie.Image_URL__c}
+        alt={specie.Name}
+      />
+    </div>
 
-        <div class="slds-align_absolute-center">
-            <img 
-                class="specie slds-var-m-around_medium"
-                src={specie.Image_URL__c}
-                alt={specie.Name}
-            />
-        </div>
+    <div class="slds-var-p-horizontal_small slds-align_absolute-center">
+      <template if:true={isOutdoor}>
+        <!-- Mostrar icono de sol -->
+        <lightning-icon
+          icon-name="custom:custom3"
+          alternative-text="Outdoors"
+          title="Outdoors"
+        ></lightning-icon>
+      </template>
 
-        <div class="slds-var-p-horizontal_small slds-align_absolute-center">
-            <template if:true={isOutdoor}>
-                <!-- Mostrar icono de sol -->
-                <lightning-icon 
-                    icon-name="custom:custom3"
-                    alternative-text="Outdoors"
-                    title="Outdoors"
-                ></lightning-icon>
-            </template>
-    
-            <template if:true={isIndoor}>
-                <!-- Mostrar icono de casa -->
-                <lightning-icon 
-                    icon-name="standard:home"
-                    alternative-text="Indoors"
-                    title="Indoors"
-                    class="slds-var-m-left_small"
-                ></lightning-icon>
-            </template>
-        </div>
-        <!-- body end -->
-
-    </lightning-card>
+      <template if:true={isIndoor}>
+        <!-- Mostrar icono de casa -->
+        <lightning-icon
+          icon-name="standard:home"
+          alternative-text="Indoors"
+          title="Indoors"
+          class="slds-var-m-left_small"
+        ></lightning-icon>
+      </template>
+    </div>
+    <!-- body end -->
+  </lightning-card>
 </template>

@@ -3,4 +3,9 @@
 //     query text and running the command:
 //     SFDX: Execute SOQL Query with Currently Selected Text
 
-SELECT Id, Name FROM Account
+// Desde la terminal: sfdx data:query --query SELECT Name FROM Plant__c ORDER BY Name
+
+// SELECT Name FROM Plant__c ORDER BY Name
+// SELECT Name, Acquisition_Date__c FROM Plant__c ORDER BY Acquisition_Date__c LIMIT 3
+
+SELECT Name, Acquisition_Date__c FROM Plant__c WHERE Acquisition_Date__c >= 2024-02-14  ORDER BY Acquisition_Date__c LIMIT 3
